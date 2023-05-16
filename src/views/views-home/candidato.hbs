@@ -1,0 +1,40 @@
+<div class="row" id="candidato">
+    {{#each candidato}}
+    <div class="col-md-4">
+        <div class="card p-4">
+            <div class="card-header bg-primary">
+                <h5 class="mt-1 text-white">{{ this.NOMBRES_DEL_CANDIDATO}}</h5>
+            </div>
+            <button data-toggle="modal" data-target="#modal{{this._id}}">
+                <img src="{{ this.IMAGEN_DEL_CANDIDATO}}" alt="" class="card-img p-4">
+            </button>
+            <div class="card-header bg-primary">
+                <h5 class="mt-1 text-white">NUMERO DE VOTOS: {{ this.VOTOS_DE_LISTA }}</h5>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal{{this._id}}" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content p-4">
+                <hr><div class="row">
+                    <div class="col-4">
+                        <img src="{{ this.IMAGEN_DEL_CANDIDATO}}" alt="" class="card-img">
+                    </div>
+                    <div class="col-8 bg-dark text-white">
+                        <h5 class="mt-4">CANDIDATO: {{ this.NOMBRES_DEL_CANDIDATO }}</h5>
+                        <h5>PROPUESTA: {{ this.PROPUESTA_DE_CANDIDATO }}</h5>
+                        <h2>LISTA: {{ this.NUMERO_DE_LISTA }}</h2>
+                    </div>
+                </div><hr>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+
+<style>
+    #candidato{ 
+        text-align: center;
+        margin-top: 150px;
+    }
+</style>

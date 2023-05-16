@@ -1,0 +1,29 @@
+<div class="row" id="sufragar">
+    <div class="col-md-4 mx-auto card p-4 shadow">
+        <form action="/sufragar" method="POST">
+            <div class="form-group">
+                <input type="text" placeholder="NUMERO DE CEDULA" class="text-center form-control" name="identify">
+            </div>
+            <button class="btn btn-primary btn-block">Ingresar</button>
+        </form>
+    </div>
+</div>
+
+{{#if alert}}
+    <script>
+        Swal.fire({
+            text: '{{ alertMessage }}',
+            icon: '{{ alertIcon }}',
+            timer: '{{ time }}'
+        }).then(() =>{
+            window.location='/{{ ruta }}'
+        })
+    </script>
+{{/if}}
+
+<style>
+    #sufragar{ 
+        text-align: center;
+        margin-top: 150px;
+    }
+</style>

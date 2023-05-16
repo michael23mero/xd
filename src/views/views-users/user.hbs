@@ -1,0 +1,69 @@
+<section id="user">
+    <hr><div class="row">
+        <div class="col-md-11 mx-auto d-flex justify-content-between">
+            <h4 class="mt-2">Bienvenido: {{ user.fullname }}</h4>
+            <a href="/logout" class="btn btn-dark">CERAR SESION</a>
+        </div>
+    </div><hr>
+
+    {{#if user.status}}
+        <h5 class="mt-4">USTED YA REALIZO SU VOTO <a href="" class="ml-5 btn btn-primary">IMPRIMIR COMPROBANTE</a></h5>
+        <div class="row">
+            <div class="col-md-5 mx-auto"><hr>
+                <div class="card p-4">
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="https://dthezntil550i.cloudfront.net/f4/latest/f41908291942413280009640715/1280_960/1b2d9510-d66d-43a2-971a-cfcbb600e7fe.png" alt="imagen" class="card-img">
+                        </div>
+                        <div class="col-8">
+                            <h5 class="text-center py-2">CNE</h5>
+                            <h6>NOMBRE: {{ user.fullname }}</h6>
+                            <h6>IDENTIFICACION: {{ user.identify }}</h6>
+                            <h6>LUGAR DE VOTACION: {{ user.lugarV }}</h6>
+                            <h6 class="py-4">2023</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{else}}
+    <h5 class="mt-4">SU VOTO ES SECRETO</h5>
+    <div class="row">
+        {{#each candidato}}
+        <div class="col-md-4"><hr>
+            <div class="card p-4">
+                <h5 class="card-header">{{ this.NOMBRES_DEL_CANDIDATO}}</h5>
+                <img src="{{ this.IMAGEN_DEL_CANDIDATO}}" alt="" class="card-img p-4">
+                <a onclick="votar('{{this._id}}')" class="btn btn-warning">ELEGIR</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{/if}}
+</section>
+
+<script type="text/javascript">
+    const votar = (id) => {
+        Swal.fire({
+        text: 'ESTA SEGURO?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si',
+        cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location = '/elegir/'+id 
+            }
+        })
+    }
+</script>
+
+
+<style>
+    #user{ 
+        text-align: center;
+        margin-top: 150px;
+    }
+</style>
